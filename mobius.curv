@@ -1,21 +1,15 @@
 parametric
   C :: colour_picker = sRGB.HSV[0, .7, .7];
   Angle :: slider[0,720] = 180;
-  //boxMitred :: checkbox = true;
+in let
+  boxX=25; boxY=25; boxZ=100
 in
-  //let boxF=if (boxMitred) box.mitred else box;
-  let boxF=box.mitred;
-  //let boxF=box;
-  in 
-    let boxX=25; boxY=25; boxZ=100
-    in
-      boxF [boxX,boxY,boxZ]
-      >> colour C
-      >> twist (Angle*deg/boxZ)
-      >> rotate {angle: 90*deg, axis: Y_axis}
-      >> bend {}
-      //>> offset 0.001 // "crease visible"
-      >> offset 0.01 // "crease invisible"
-      //>> rotate {angle: 3*deg, axis: Z_axis}
-      >> lipschitz 2
+  box [boxX,boxY,boxZ]
+  >> colour C
+  >> twist (Angle*deg/boxZ)
+  >> rotate {angle: 90*deg, axis: Y_axis}
+  >> bend {angle: 360*deg}
+  //>> offset 0.001 // "crease visible"
+  //>> offset 0.01  // "crease invisible"
+  >> lipschitz 2
 
